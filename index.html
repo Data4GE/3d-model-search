@@ -18,37 +18,93 @@
   }
 
   h2 { text-align:center; margin-bottom:20px; color:#3f7fcc; }
-  input[type="text"] { width:100%; margin:10px 0; padding:12px; font-size:16px; border:2px solid #cc4a3f; border-radius:8px; outline:none; transition:border 0.2s; }
+  input[type="text"] {
+    width:100%;
+    margin:10px 0;
+    padding:12px;
+    font-size:16px;
+    border:2px solid #cc4a3f;
+    border-radius:8px;
+    outline:none;
+    transition:border 0.2s;
+    box-sizing: border-box;
+  }
   input[type="text"]:focus { border-color:#3f7fcc; }
 
   #buttonContainer { display:flex; justify-content:center; gap:10px; margin-top:10px; }
-  button { padding:10px 20px; font-size:16px; cursor:pointer; border-radius:8px; border:none; color:white; background:linear-gradient(45deg, #cc4a3f, #f5a623); transition: transform 0.2s, box-shadow 0.2s; }
+  button {
+    padding:10px 20px;
+    font-size:16px;
+    cursor:pointer;
+    border-radius:8px;
+    border:none;
+    color:white;
+    background:linear-gradient(45deg, #cc4a3f, #f5a623);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
   button:hover { transform:translateY(-2px); box-shadow:0 6px 12px rgba(0,0,0,0.2); }
 
   #site-options { margin-bottom: 10px; display:flex; flex-wrap:wrap; gap:10px; }
-  .site-option { display:flex; align-items:center; gap:5px; }
+  .site-option { display:flex; align-items:center; gap:5px; user-select:none; }
   .site-option img { width:20px; height:20px; }
 
   #free-toggle { margin-bottom: 15px; display:flex; align-items:center; }
   #free-toggle input { accent-color:#4caf50; }
   #free-toggle label { margin-left:5px; color:#4caf50; }
 
-  #tags { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
-  .tag { padding:5px 10px; background:#3f7fcc; color:white; border-radius:5px; cursor:pointer; font-size:14px; }
+  /* ===== TAG BAR (NEW LAYOUT: reset button to the side) ===== */
+  #tagBar {
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    margin-bottom:10px;
+  }
+  #tags { display:flex; gap:10px; flex-wrap:wrap; flex:1; margin-bottom:0; }
+  .tag {
+    padding:5px 10px;
+    background:#3f7fcc;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:14px;
+    user-select:none;
+  }
   .tag:hover { background:#f5a623; }
+
+  #resetTagsBtn{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    font-size:20px;
+    padding:0;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    line-height:1;
+    flex:0 0 auto;
+  }
 
   #lastSearched { text-align:center; font-style:italic; color:#3f7fcc; margin-bottom:10px; }
   #loading { text-align:center; font-style:italic; color:#888; display:none; }
   #output { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:15px; margin-top:20px; }
 
-  .card { background:linear-gradient(145deg, #fdf6e3, #e6f0ff); border-radius:12px; padding:15px; display:flex; align-items:center; box-shadow:0 3px 8px rgba(0,0,0,0.15); transition: transform 0.2s, box-shadow 0.2s; position:relative; }
+  .card {
+    background:linear-gradient(145deg, #fdf6e3, #e6f0ff);
+    border-radius:12px;
+    padding:15px;
+    display:flex;
+    align-items:center;
+    box-shadow:0 3px 8px rgba(0,0,0,0.15);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position:relative;
+  }
   .card:hover { transform:translateY(-3px); box-shadow:0 6px 15px rgba(0,0,0,0.25); }
 
   .card img { width:48px; height:48px; margin-right:15px; border-radius:8px; }
   .card a { font-size:18px; color:#cc4a3f; text-decoration:none; }
   .card a:hover { text-decoration:underline; color:#3f7fcc; }
 
-  #previewPopup { position:absolute; border:2px solid #ccc; width:400px; height:300px; display:none; z-index:1000; }
+  #previewPopup { position:absolute; border:2px solid #ccc; width:400px; height:300px; display:none; z-index:1000; background:#fff; }
   #previewPopup iframe { width:100%; height:100%; border:none; border-radius:8px; }
 
   #openAllContainer { text-align:center; margin-top:20px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
@@ -61,20 +117,89 @@
   body.dark-mode footer { color:#aaa; }
   body.dark-mode .card { background:linear-gradient(145deg,#2b2b2b,#3a3a3a); }
   body.dark-mode .card a { color:#f5a623; }
+  body.dark-mode #previewPopup { background:#222; }
 
-  #darkModeToggle { position:absolute; top:15px; right:15px; width:40px; height:40px; background:#cc4a3f; color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:18px; cursor:pointer; box-shadow:0 3px 6px rgba(0,0,0,0.2); transition: background 0.3s, transform 0.2s; }
+  #darkModeToggle {
+    position:absolute; top:15px; right:15px;
+    width:40px; height:40px;
+    background:#cc4a3f; color:white;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:18px; cursor:pointer;
+    box-shadow:0 3px 6px rgba(0,0,0,0.2);
+    transition: background 0.3s, transform 0.2s;
+  }
   #darkModeToggle:hover { background:#3f7fcc; transform:scale(1.1); }
+
+  .hint {
+    text-align:center;
+    font-size:13px;
+    color:#666;
+    margin-top:-2px;
+    margin-bottom:12px;
+  }
+  body.dark-mode .hint { color:#bbb; }
+
+  /* ===== Add Site (collapsible) ===== */
+  #toggleAddSite {
+    display:block;
+    margin: 10px auto 12px auto;
+    background: linear-gradient(45deg, #3f7fcc, #6fa8ff);
+  }
+  body.dark-mode #toggleAddSite {
+    background: linear-gradient(45deg, #555, #888);
+  }
+  #addSitePanel {
+    background: rgba(255,255,255,0.6);
+    padding: 12px;
+    border-radius: 12px;
+    margin: 0 0 12px 0;
+  }
+  body.dark-mode #addSitePanel {
+    background: rgba(0,0,0,0.35);
+  }
+  .hidden { display:none; }
+  .siteFormRow {
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .siteFormRow input {
+    flex:1;
+    min-width: 220px;
+  }
+  .subhint{
+    font-size:12px;
+    color:#666;
+    text-align:center;
+    margin-top:6px;
+  }
+  body.dark-mode .subhint{ color:#bbb; }
 </style>
 </head>
+
 <body>
 <div id="darkModeToggle" onclick="toggleDarkMode()">🌙</div>
 
 <h2>3D Model Multi-Site Search</h2>
 
 <label for="searchTerm">Search for:</label>
-<input type="text" id="searchTerm" placeholder="Type your query..." />
+<input type="text" id="searchTerm" placeholder='Type your query… (Tab = save as tag, "#tag " = quick tag)' />
+<div class="hint">
+  Tip: <b>Tab</b> saves what you typed as a tag • Type <b>#tag</b> then space to save • Tag actions: <b>Click</b>=Search • <b>Shift+Click</b>=Add • <b>Ctrl+Click</b>=Delete
+</div>
 
-<div id="tags"></div>
+<!-- TAGS + RESET BUTTON BESIDE -->
+<div id="tagBar">
+  <div id="tags"></div>
+  <button
+    id="resetTagsBtn"
+    type="button"
+    onclick="resetTags()"
+    title="Reset tags to defaults"
+    aria-label="Reset tags"
+  >🔄</button>
+</div>
 
 <div style="display:flex; gap:10px; align-items:center; margin:10px 0;">
   <select id="searchHistory" style="flex:1;">
@@ -86,6 +211,27 @@
 <div id="buttonContainer">
   <button onclick="generateLinks()">Search</button>
   <button onclick="clearSearch()">Clear</button>
+</div>
+
+<!-- Collapsible Add Site UI -->
+<button id="toggleAddSite" type="button">➕ Add site</button>
+
+<div id="addSitePanel" class="hidden">
+  <div class="siteFormRow">
+    <input type="text" id="siteName" placeholder="Site name (e.g. Yeggi)">
+    <input type="text" id="siteLogo" placeholder="Logo/favicon URL (optional)">
+  </div>
+  <input type="text" id="siteUrlAll" placeholder='All URL (required; include {q} or {q_plus})'>
+  <input type="text" id="siteUrlFree" placeholder='Free URL (optional; include {q} or {q_plus})'>
+
+  <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:10px;">
+    <button type="button" onclick="addSite()">Add Site</button>
+    <button type="button" onclick="restoreDefaultSites()">Restore Default Sites</button>
+  </div>
+
+  <div class="subhint">
+    Use <b>{q}</b> for paths (spaces become %20) • Use <b>{q_plus}</b> for query strings (spaces become +)
+  </div>
 </div>
 
 <div id="site-options"></div>
@@ -112,7 +258,11 @@
 </footer>
 
 <script>
-const sites = [
+/* ===== Default tags for reset ===== */
+const DEFAULT_TAGS = ["cosplay","miniatures","gadgets","tools","figurines"];
+
+/* ===== DEFAULT SITES ===== */
+const defaultSites = [
   { name: "Thingiverse", urlFree:"https://www.thingiverse.com/search?q={q_plus}&page=1&sort=relevant", urlAll:"https://www.thingiverse.com/search?q={q_plus}&page=1&sort=relevant", logo:"https://www.thingiverse.com/favicon.ico" },
   { name: "Thangs", urlFree:"https://thangs.com/search/{q}?searchScope=thangs&scope=all&freeModels=true", urlAll:"https://thangs.com/search/{q}?searchScope=thangs&scope=all", logo:"https://thangs.com/favicon.ico" },
   { name: "Printables", urlFree:"https://www.printables.com/search/models?q={q_plus}", urlAll:"https://www.printables.com/search/models?q={q_plus}", logo:"https://www.printables.com/favicon.ico" },
@@ -121,92 +271,394 @@ const sites = [
   { name: "MakerWorld", urlFree:"https://makerworld.com/en/search/models?keyword={q_plus}", urlAll:"https://makerworld.com/en/search/models?keyword={q_plus}", logo:"https://makerworld.com/favicon.ico" }
 ];
 
-let currentLinks=[], searchHistory=JSON.parse(localStorage.getItem("searchHistory"))||[], tags=["cosplay","miniatures","gadgets","tools","figurines"];
+/* ===== Load custom sites and merge ===== */
+let customSites = JSON.parse(localStorage.getItem("customSites")) || [];
+let sites = [...defaultSites, ...customSites];
 
-const siteOptionsDiv=document.getElementById("site-options");
-sites.forEach((site,index)=>{
-  const label=document.createElement("label");
-  label.className="site-option";
-  label.innerHTML=`<input type="checkbox" checked data-index="${index}"><img src="${site.logo}" alt="${site.name}"> ${site.name}`;
-  siteOptionsDiv.appendChild(label);
-});
+let currentLinks = [];
+let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+let tags = JSON.parse(localStorage.getItem("tags")) || [...DEFAULT_TAGS];
 
-const tagsDiv=document.getElementById("tags");
-tags.forEach(t=>{
-  const tag=document.createElement("div");
-  tag.className="tag";
-  tag.textContent=t;
-  tag.onclick=()=>{document.getElementById("searchTerm").value=t; generateLinks();};
-  tagsDiv.appendChild(tag);
-});
+const siteOptionsDiv = document.getElementById("site-options");
+const tagsDiv = document.getElementById("tags");
 
-function generateMyMiniFactoryLink(searchTerm, freeOnly){
-  const baseURL=freeOnly
-    ? 'https://www.myminifactory.com/search#/?{%22searchString%22:%22__QUERY__%22,%22categories%22:[],%22designType%22:%22free-only%22,%22sortingKey%22:%22%22,%22tags%22:[]}'
-    : 'https://www.myminifactory.com/search#/?{%22searchString%22:%22__QUERY__%22,%22categories%22:[],%22designType%22:%22all%22,%22sortingKey%22:%22%22,%22tags%22:[]}';
-  return baseURL.replace("__QUERY__", encodeURIComponent(searchTerm));
+/* ===== Helpers ===== */
+function placeholderLogo(){
+  return "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Crect width='20' height='20' rx='4' ry='4' fill='%233f7fcc'/%3E%3C/svg%3E";
 }
 
+/* ===== Render Sites ===== */
+function renderSites(){
+  siteOptionsDiv.innerHTML = "";
+  sites.forEach((site,index)=>{
+    const label=document.createElement("label");
+    label.className="site-option";
+    const logo = site.logo || placeholderLogo();
+    label.innerHTML=`<input type="checkbox" checked data-index="${index}"><img src="${logo}" alt="${site.name}"> ${site.name}`;
+    siteOptionsDiv.appendChild(label);
+  });
+}
+
+/* ===== TAGS ===== */
+function saveTags(){
+  localStorage.setItem("tags", JSON.stringify(tags));
+}
+
+function renderTags(){
+  tagsDiv.innerHTML = "";
+  tags.forEach(t=>{
+    const tag=document.createElement("div");
+    tag.className="tag";
+    tag.textContent=t;
+    tag.title="Click = search • Shift+Click = add • Ctrl+Click = delete";
+
+    tag.onclick = (e) => {
+      const box = document.getElementById("searchTerm");
+
+      // Ctrl+Click = delete tag
+      if (e.ctrlKey) {
+        if (confirm(`Delete tag "${t}"?`)) {
+          tags = tags.filter(x => x !== t);
+          saveTags();
+          renderTags();
+        }
+        return;
+      }
+
+      // Shift+Click = add tag to query
+      if (e.shiftKey) {
+        const parts = box.value.trim() ? box.value.trim().split(/\s+/) : [];
+        if (!parts.includes(t)) parts.push(t);
+        box.value = parts.join(" ");
+      } else {
+        // Click = replace query
+        box.value = t;
+      }
+
+      generateLinks();
+    };
+
+    tagsDiv.appendChild(tag);
+  });
+}
+
+function addTagFromInput(raw){
+  const val = (raw || "").trim();
+  if(!val) return;
+
+  const normalized = val.replace(/\s+/g," ");
+
+  if(!tags.some(t => t.toLowerCase() === normalized.toLowerCase())){
+    tags.unshift(normalized);
+    if(tags.length > 40) tags.pop();
+    saveTags();
+    renderTags();
+  }
+}
+
+/* ===== Reset tags button ===== */
+function resetTags(){
+  if(!confirm("Reset tags back to defaults? This will remove your custom tags.")) return;
+  tags = [...DEFAULT_TAGS];
+  saveTags();
+  renderTags();
+
+  // optional cleanup if you later add backup/undo features
+  localStorage.removeItem("tags_backup");
+  localStorage.removeItem("tags_undo");
+}
+
+/* ===== MyMiniFactory ===== */
+function generateMyMiniFactoryLink(searchTerm, freeOnly){
+  const payload = {
+    searchString: searchTerm,
+    categories: [],
+    designType: freeOnly ? "free-only" : "all",
+    sortingKey: "",
+    tags: []
+  };
+  return "https://www.myminifactory.com/search#/?"
+    + encodeURIComponent(JSON.stringify(payload));
+}
+
+/* ===== Generate Links ===== */
 function generateLinks(){
   const rawTerm=document.getElementById("searchTerm").value.trim();
   if(!rawTerm) return;
+
   document.getElementById("loading").style.display="block";
   setTimeout(()=>{
-    const term=encodeURIComponent(rawTerm);
-    const termPlus=rawTerm.replace(/\s+/g,"+");
+    const term = encodeURIComponent(rawTerm); // {q}
+    const termPlus = encodeURIComponent(rawTerm).replace(/%20/g,"+"); // {q_plus}
     const freeOnly=document.getElementById("freeOnlyCheckbox").checked;
+
     document.getElementById("lastSearched").textContent=`Last searched: "${rawTerm}"`;
 
-    if(!searchHistory.includes(rawTerm)){searchHistory.unshift(rawTerm); if(searchHistory.length>10)searchHistory.pop(); localStorage.setItem("searchHistory",JSON.stringify(searchHistory)); updateHistoryDropdown();}
+    if(!searchHistory.includes(rawTerm)){
+      searchHistory.unshift(rawTerm);
+      if(searchHistory.length>10) searchHistory.pop();
+      localStorage.setItem("searchHistory",JSON.stringify(searchHistory));
+      updateHistoryDropdown();
+    }
 
     const checkboxes=document.querySelectorAll("#site-options input[type='checkbox']");
-    const selectedSites=[], popup=document.getElementById("previewPopup");
+    const selectedSites=[];
+    const popup=document.getElementById("previewPopup");
     currentLinks=[];
+
     checkboxes.forEach(cb=>{
       if(cb.checked){
-        const site=sites[cb.dataset.index]; selectedSites.push(site);
+        const site=sites[cb.dataset.index];
+        selectedSites.push(site);
+
         let link;
-        if(site.name==="MyMiniFactory"){link=generateMyMiniFactoryLink(rawTerm,freeOnly);}
-        else if(freeOnly && site.urlFree){link=site.urlFree.replace("{q}",term).replace("{q_plus}",termPlus);}
-        else{link=site.urlAll.replace("{q}",term).replace("{q_plus}",termPlus);}
+        if(site.name==="MyMiniFactory"){
+          link = generateMyMiniFactoryLink(rawTerm, freeOnly);
+        } else if(freeOnly && site.urlFree){
+          link = site.urlFree.replace("{q}",term).replace("{q_plus}",termPlus);
+        } else {
+          link = site.urlAll.replace("{q}",term).replace("{q_plus}",termPlus);
+        }
         currentLinks.push(link);
       }
     });
 
     const output=document.getElementById("output");
     output.innerHTML="";
+
     selectedSites.forEach((site,index)=>{
       const card=document.createElement("div");
       card.className="card";
-      card.innerHTML=`<img src="${site.logo}" alt="${site.name}"><a href="${currentLinks[index]}" target="_blank">${site.name}</a>`;
-      card.onmouseenter=e=>{popup.style.display="block"; popup.style.top=(e.clientY+10)+"px"; popup.style.left=(e.clientX+10)+"px"; popup.querySelector("iframe").src=currentLinks[index];};
-      card.onmouseleave=()=>{popup.style.display="none"; popup.querySelector("iframe").src="";};
+      const logo = site.logo || placeholderLogo();
+      card.innerHTML=`<img src="${logo}" alt="${site.name}"><a href="${currentLinks[index]}" target="_blank" rel="noopener noreferrer">${site.name}</a>`;
+
+      card.onmouseenter=e=>{
+        popup.style.display="block";
+        popup.style.top=(e.clientY+10)+"px";
+        popup.style.left=(e.clientX+10)+"px";
+        popup.querySelector("iframe").src=currentLinks[index];
+      };
+      card.onmouseleave=()=>{
+        popup.style.display="none";
+        popup.querySelector("iframe").src="";
+      };
+
       output.appendChild(card);
     });
+
     document.getElementById("loading").style.display="none";
   },300);
 }
 
-function openAll(){if(currentLinks.length===0)return; currentLinks.forEach(link=>window.open(link,"_blank"));}
-function exportLinks(){if(currentLinks.length===0)return; const blob=new Blob([currentLinks.join("\n")],{type:"text/plain"}); const url=URL.createObjectURL(blob); const a=document.createElement("a"); a.href=url; a.download="search_links.txt"; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);}
-function copyShareURL(){const term=document.getElementById("searchTerm").value.trim(); if(!term) return; const checkboxes=document.querySelectorAll("#site-options input[type='checkbox']"); const selectedSites=[]; checkboxes.forEach(cb=>{if(cb.checked) selectedSites.push(sites[cb.dataset.index].name.toLowerCase());}); const freeOnly=document.getElementById("freeOnlyCheckbox").checked; const url=window.location.origin+window.location.pathname+`?q=${encodeURIComponent(term)}&sites=${selectedSites.join(",")}&free=${freeOnly}`; navigator.clipboard.writeText(url).then(()=>alert("Shareable URL copied!"));}
+function openAll(){
+  if(currentLinks.length===0) return;
+  currentLinks.forEach(link=>window.open(link,"_blank"));
+}
 
-function clearSearch(){document.getElementById("searchTerm").value=""; document.getElementById("lastSearched").textContent=""; document.getElementById("output").innerHTML=""; currentLinks=[];}
-function toggleDarkMode(){document.body.classList.toggle("dark-mode"); document.getElementById("darkModeToggle").textContent=document.body.classList.contains("dark-mode")?"☀️":"🌙";}
+function exportLinks(){
+  if(currentLinks.length===0) return;
+  const blob=new Blob([currentLinks.join("\n")],{type:"text/plain"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;
+  a.download="search_links.txt";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
 
-function updateHistoryDropdown(){const dropdown=document.getElementById("searchHistory"); dropdown.innerHTML='<option value="">-- Recent Searches --</option>'; searchHistory.forEach(term=>{const option=document.createElement("option"); option.value=term; option.textContent=term; dropdown.appendChild(option);});}
-function clearHistory(){searchHistory=[]; localStorage.removeItem("searchHistory"); updateHistoryDropdown();}
+function copyShareURL(){
+  const term=document.getElementById("searchTerm").value.trim();
+  if(!term) return;
 
-document.getElementById("searchHistory").addEventListener("change",function(){if(this.value){document.getElementById("searchTerm").value=this.value; generateLinks();}});
-document.getElementById("searchTerm").addEventListener("keypress",function(e){if(e.key==="Enter"&&!e.shiftKey){e.preventDefault(); generateLinks();} else if(e.key==="Enter"&&e.shiftKey){e.preventDefault(); openAll();}});
-document.addEventListener("keydown",function(e){if(e.ctrlKey&&e.key.toLowerCase()==="e"){e.preventDefault(); exportLinks();}});
+  const checkboxes=document.querySelectorAll("#site-options input[type='checkbox']");
+  const selectedSites=[];
+  checkboxes.forEach(cb=>{
+    if(cb.checked) selectedSites.push(sites[cb.dataset.index].name.toLowerCase());
+  });
 
+  const freeOnly=document.getElementById("freeOnlyCheckbox").checked;
+  const url=window.location.origin+window.location.pathname+`?q=${encodeURIComponent(term)}&sites=${selectedSites.join(",")}&free=${freeOnly}`;
+  navigator.clipboard.writeText(url).then(()=>alert("Shareable URL copied!"));
+}
+
+function clearSearch(){
+  document.getElementById("searchTerm").value="";
+  document.getElementById("lastSearched").textContent="";
+  document.getElementById("output").innerHTML="";
+  currentLinks=[];
+}
+
+function toggleDarkMode(){
+  document.body.classList.toggle("dark-mode");
+  document.getElementById("darkModeToggle").textContent=document.body.classList.contains("dark-mode")?"☀️":"🌙";
+}
+
+function updateHistoryDropdown(){
+  const dropdown=document.getElementById("searchHistory");
+  dropdown.innerHTML='<option value="">-- Recent Searches --</option>';
+  searchHistory.forEach(term=>{
+    const option=document.createElement("option");
+    option.value=term;
+    option.textContent=term;
+    dropdown.appendChild(option);
+  });
+}
+
+function clearHistory(){
+  searchHistory=[];
+  localStorage.removeItem("searchHistory");
+  updateHistoryDropdown();
+}
+
+/* ===== ADD SITE ===== */
+function saveCustomSites(){
+  localStorage.setItem("customSites", JSON.stringify(customSites));
+}
+
+function addSite(){
+  const name = document.getElementById("siteName").value.trim();
+  const urlAll = document.getElementById("siteUrlAll").value.trim();
+  const urlFree = document.getElementById("siteUrlFree").value.trim();
+  const logo = document.getElementById("siteLogo").value.trim();
+
+  if(!name || !urlAll){
+    alert("Please enter at least a Site name and an All URL.");
+    return;
+  }
+
+  const okAll = urlAll.includes("{q}") || urlAll.includes("{q_plus}");
+  if(!okAll){
+    alert('All URL must include {q} or {q_plus}.');
+    return;
+  }
+
+  if(urlFree){
+    const okFree = urlFree.includes("{q}") || urlFree.includes("{q_plus}");
+    if(!okFree){
+      alert('Free URL must include {q} or {q_plus}.');
+      return;
+    }
+  }
+
+  if(sites.some(s => s.name.toLowerCase() === name.toLowerCase())){
+    alert("A site with that name already exists.");
+    return;
+  }
+
+  customSites.unshift({
+    name,
+    urlAll,
+    urlFree: urlFree || null,
+    logo: logo || null
+  });
+
+  saveCustomSites();
+
+  sites = [...defaultSites, ...customSites];
+  renderSites();
+
+  document.getElementById("siteName").value = "";
+  document.getElementById("siteUrlAll").value = "";
+  document.getElementById("siteUrlFree").value = "";
+  document.getElementById("siteLogo").value = "";
+
+  alert("Site added!");
+}
+
+function restoreDefaultSites(){
+  if(!confirm("Remove all custom sites and restore defaults?")) return;
+  customSites = [];
+  localStorage.removeItem("customSites");
+  sites = [...defaultSites];
+  renderSites();
+}
+
+/* ===== Toggle Add Site UI ===== */
+const toggleAddSiteBtn = document.getElementById("toggleAddSite");
+const addSitePanel = document.getElementById("addSitePanel");
+
+toggleAddSiteBtn.addEventListener("click", () => {
+  const isHidden = addSitePanel.classList.toggle("hidden");
+  toggleAddSiteBtn.textContent = isHidden ? "➕ Add site" : "✖ Close add site";
+});
+
+/* --------- EVENTS --------- */
+
+document.getElementById("searchHistory").addEventListener("change",function(){
+  if(this.value){
+    document.getElementById("searchTerm").value=this.value;
+    generateLinks();
+  }
+});
+
+document.getElementById("searchTerm").addEventListener("keydown",function(e){
+  const box = this;
+
+  if(e.key === "Tab"){
+    e.preventDefault();
+    const val = box.value.trim();
+    if(val){
+      addTagFromInput(val);
+      box.value = "";
+    }
+    return;
+  }
+
+  if(e.key === " "){
+    const v = box.value;
+    if(v.startsWith("#")){
+      const maybeTag = v.slice(1).trim();
+      if(maybeTag){
+        e.preventDefault();
+        addTagFromInput(maybeTag);
+        box.value = "";
+      }
+      return;
+    }
+  }
+
+  if(e.key==="Enter" && !e.shiftKey){
+    e.preventDefault();
+    generateLinks();
+  } else if(e.key==="Enter" && e.shiftKey){
+    e.preventDefault();
+    openAll();
+  }
+});
+
+// Ctrl+E exports
+document.addEventListener("keydown",function(e){
+  if(e.ctrlKey && e.key.toLowerCase()==="e"){
+    e.preventDefault();
+    exportLinks();
+  }
+});
+
+/* ===== INIT ===== */
 updateHistoryDropdown();
+renderTags();
+renderSites();
 
-// Auto-load from URL if shareable link
+/* Auto-load from URL if shareable link */
 const params=new URLSearchParams(window.location.search);
-const q=params.get("q"); const sitesParam=params.get("sites"); const free=params.get("free")==="true";
-if(q){document.getElementById("searchTerm").value=q; document.getElementById("freeOnlyCheckbox").checked=free; if(sitesParam){const arr=sitesParam.split(","); document.querySelectorAll("#site-options input[type='checkbox']").forEach(cb=>{cb.checked=arr.includes(sites[cb.dataset.index].name.toLowerCase())});} generateLinks();}
+const q=params.get("q");
+const sitesParam=params.get("sites");
+const free=params.get("free")==="true";
+
+if(q){
+  document.getElementById("searchTerm").value=q;
+  document.getElementById("freeOnlyCheckbox").checked=free;
+
+  if(sitesParam){
+    const arr=sitesParam.split(",");
+    document.querySelectorAll("#site-options input[type='checkbox']").forEach(cb=>{
+      cb.checked=arr.includes(sites[cb.dataset.index].name.toLowerCase());
+    });
+  }
+  generateLinks();
+}
 </script>
 </body>
 </html>
